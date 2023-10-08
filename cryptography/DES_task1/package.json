@@ -1,0 +1,38 @@
+{
+  "name": "des",
+  "version": "1.0.0",
+  "description": "Implementation of symmetric-key encryption algorithm DES",
+  "main": "dist/index.js",
+  "author": "koroldavid",
+  "private": false,
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "build": "tsc",
+    "test": "jest --maxWorkers=4"
+  },
+  "devDependencies": {
+    "@jest/types": "^27.2.5",
+    "@types/jest": "^27.0.2",
+    "@types/lodash": "^4.14.176",
+    "@types/node": "^16.4.13",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^7.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-eslint-plugin": "^3.5.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.26.1",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.5.4"
+  },
+  "engines": {
+    "node": ">= 12.x || 14.x || >= 16"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
