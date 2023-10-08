@@ -1,4 +1,5 @@
 import { decryptWithDES, encryptWithDES } from "./des";
+import { to64BitArray } from "./utils";
 
 
 describe('Des encryption algorithm', () => {
@@ -31,9 +32,17 @@ describe('Des encryption algorithm', () => {
     expect(decryptedMessage).toEqual(inputMessage);
   });
 
-//   it('encrypts well know string string correctly', () => {
-//     const key = "knownKey";
-//     const message = "well known encryption string";
+  it('could convert well-known plain text', () => {
+    const wellKnownOutput = [
+      1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1,
+      1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1,
+      1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1,
+      1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1,
+      1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1,
+      1, 1, 1, 1
+    ];
+    const wellKnownKey = to64BitArray('12345678')[0];
 
-//   });
+    expect(decryptWithDES(wellKnownOutput, wellKnownKey)).toEqual(to64BitArray('Once upo')[0]);
+  });
 });

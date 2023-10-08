@@ -1,5 +1,5 @@
 import { chunk, range, toString } from "lodash";
-import { permute, shiftLeft, xor } from "./utils";
+import { permute, shiftLeft, toBits, xor } from "./utils";
 import {
   EXPANSION_D_48,
   FINAL_PERMUTATION,
@@ -12,17 +12,13 @@ import {
   S_BOXES,
 } from "./constants";
 
-function decimalToBinary(decimal: number, minBitsSize: number = 0): number[] {
-  return decimal.toString(2).padStart(minBitsSize, '0').split('').map(Number)
-}
-
 function sBoxSubstitution(input: number[]): number[] {
   return chunk(input, 6).reduce((output, aChunk, chunkNumber) => {
     const [first, second, third, fourth, fifth, sixth] = aChunk.map(toString);
 
     const row = parseInt(first + sixth, 2);
     const col = parseInt(second + third + fourth + fifth, 2);
-    const convertedChunk = decimalToBinary(S_BOXES[chunkNumber][row][col], 8);
+    const convertedChunk = toBits(S_BOXES[chunkNumber][row][col]);
 
     return [...output, ...convertedChunk];
   }, []);

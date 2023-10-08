@@ -1,4 +1,4 @@
-import { permute, shiftLeft, xor } from "./utils";
+import { permute, shiftLeft, to64BitArray, xor } from "./utils";
 
 describe('permutation', () => {
   it('throws error if table has number bigger for its size', () => {
@@ -43,4 +43,35 @@ describe('xor', () => {
         [0, 1, 0, 1]
     );
   })
+});
+
+describe('Convert string to 64-bit array', () => {
+  it('converts correctly a well known string', () => {
+    const wellKnowString = 'Hello world'
+    const wellKnowBits = [
+      [
+        0, 1, 0, 0, 1, 0, 0, 0,
+        0, 1, 1, 0, 0, 1, 0, 1,
+        0, 1, 1, 0, 1, 1, 0, 0,
+        0, 1, 1, 0, 1, 1, 0, 0,
+        0, 1, 1, 0, 1, 1, 1, 1,
+        0, 0, 1, 0, 0, 0, 0, 0,
+        0, 1, 1, 1, 0, 1, 1, 1,
+        0, 1, 1, 0, 1, 1, 1, 1,
+      ],
+      [
+        0, 1, 1, 1, 0, 0, 1, 0,
+        0, 1, 1, 0, 1, 1, 0, 0,
+        0, 1, 1, 0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0, 0, 0, 1,
+        // padding
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+      ],
+    ];
+
+    expect(to64BitArray(wellKnowString)).toEqual(wellKnowBits);
+  });
 });
